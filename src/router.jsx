@@ -10,7 +10,6 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
-import React from 'react';
 function RootLayout() {
 	// layout that provides Navbar and renders the active route via Outlet
 	return (
