@@ -1,5 +1,5 @@
+import React, { forwardRef } from "react";
 import { Link } from "react-router-dom";
-import { forwardRef } from "react";
 import "./CourseCard.css";
 
 const CourseCard = forwardRef(({ title, description, to, image }, ref) => (
