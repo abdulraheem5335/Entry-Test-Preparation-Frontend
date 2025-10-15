@@ -10,6 +10,7 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
+import Quiz from './pages/Quiz';
 function RootLayout() {
 	// layout that provides Navbar and renders the active route via Outlet
 	return (
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
 			{ path: 'login', element: <Login /> },
 			{ path: 'signup', element: <Signup /> },
 			{ path: 'dashboard', element: <Dashboard /> },
+			{path:'quiz',element:<Quiz/>}
 		],
 	},
 ]);
