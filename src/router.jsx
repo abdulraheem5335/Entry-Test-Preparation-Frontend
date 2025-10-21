@@ -7,8 +7,7 @@ import MDCATPrep from './pages/MDCATPrep';
 import NATPrep from './pages/NATPrep';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+import Authpage from './pages/Authpage.jsx';
 import Dashboard from './pages/Dashboard';
 import Quiz from './pages/Quiz';
 function RootLayout() {
@@ -32,10 +31,9 @@ const router = createBrowserRouter([
 			{ path: 'nat', element: <NATPrep /> },
 			{ path: 'about', element: <About /> },
 			{ path: 'contact', element: <Contact /> },
-			{ path: 'login', element: <Login /> },
-			{ path: 'signup', element: <Signup /> },
+			{ path: 'auth', element: <Authpage /> },
 			{ path: 'dashboard', element: <Dashboard /> },
-			{path:'quiz',element:<Quiz/>}
+			{ path: 'quiz', element: <Quiz /> }
 		],
 	},
 ]);
