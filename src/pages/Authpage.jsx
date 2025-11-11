@@ -39,6 +39,9 @@ export default function AuthPage() {
     const [isLoginView, setIsLoginView] = useState(true);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    useEffect(()=>{
+        scrollTo(0,0);
+    },[])    
     const navigate = useNavigate();
 
     useEffect(() => {
