@@ -12,8 +12,9 @@ import Authpage from "./pages/Authpage.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import { Profile } from "./pages/Profile";
 import Quiz from "./pages/Quiz";
+import Userinfo from "./pages/Userinfo.jsx";
+import Course from "./pages/courses_enrolled.jsx";
 import Leaderboard from "./pages/Leaderboard.jsx";
-import Account from "./pages/Account.jsx";
 
 // --- Root layout: Navbar always visible ---
 function RootLayout() {
@@ -51,6 +52,7 @@ const router = createBrowserRouter([
 			{ path: "contact", element: <Contact /> },
 			{ path: "profile", element: <Profile /> },
 			{ path: "auth", element: <Authpage /> },
+			{path:"user-info", element:<Userinfo/>},
 			{ path: "quiz", element: <Quiz /> },
 
 			// Dashboard section wrapped with Sidebar
@@ -60,7 +62,7 @@ const router = createBrowserRouter([
 				children: [
 					{ index: true, element: <Dashboard /> },
 					{ path: "dashboard", element: <Dashboard/> },
-					{ path: "account", element: <Account/> },
+					{ path: "course", element: <Course/> },
 					{ path: "leaderboard", element: <Leaderboard/> },
 
 				],

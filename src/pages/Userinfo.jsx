@@ -36,7 +36,7 @@ const defaultProfileData = {
 
 // --- Account Page Component ---
 // It now accepts 'initialProfileData' as a prop
-function AccountPage({ initialProfileData }) {
+function Userinfo({ initialProfileData }) {
   const [isEditing, setIsEditing] = useState(false);
   
   // Use passed-in data or the default empty data
@@ -350,5 +350,5 @@ export default function App() {
     // To test with empty data:
     // const mockUserData = null; 
 
-    return <AccountPage initialProfileData={mockUserData} />;
+    return <Userinfo initialProfileData={mockUserData} />;
 }
