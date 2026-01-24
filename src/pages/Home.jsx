@@ -28,7 +28,7 @@ const examCards = [
 
 const Home = () => {
 	return (
-		<main onClick={scroll(0,0)} className="bg-gradient-to-b from-slate-50 via-white to-slate-50">
+		<main onClick={scroll(0, 0)} className="bg-gradient-to-b from-slate-50 via-white to-slate-50">
 
 			{/* HERO SECTION */}
 			<section className="relative overflow-hidden pt-7 pb-16 sm:pt-16 sm:pb-20 lg:pt-10 lg:pb-24">
@@ -37,7 +37,7 @@ const Home = () => {
 				</div>
 
 				<div className="relative mx-auto flex max-w-7xl flex-col gap-12 px-6 sm:gap-16 lg:flex-row lg:items-center">
-					
+
 					{/* HERO TEXT */}
 					<div className="max-w-2xl space-y-6 sm:space-y-8">
 						<h1 className="text-4xl font-bold leading-tight text-slate-900 sm:text-5xl lg:text-6xl">
@@ -184,6 +184,111 @@ const Home = () => {
 				</div>
 			</section>
 
+			{/* STUDENT REVIEWS SECTION */}
+			<section className="mx-auto max-w-7xl px-6 py-16 sm:py-20">
+				<div className="text-center mb-12">
+					<p className="text-xs font-semibold uppercase tracking-[0.32em] text-blue-600">Student Reviews</p>
+					<h2 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">What Our Students Say</h2>
+					<p className="mt-3 text-base text-slate-500 max-w-2xl mx-auto">
+						Join thousands of successful students who achieved their dreams with our platform
+					</p>
+				</div>
+
+				<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+					{[
+						{
+							name: "Ayesha Khan",
+							exam: "MDCAT 2024",
+							score: "Score: 192/200",
+							avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80",
+							review: "This platform completely transformed my MDCAT preparation. The adaptive practice tests helped me identify my weak areas. I secured admission in King Edward Medical University!",
+							rating: 5
+						},
+						{
+							name: "Ahmed Ali",
+							exam: "NUST NET 2024",
+							score: "Merit Position: 47",
+							avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80",
+							review: "The NET preparation track was exactly what I needed. The subject-wise practice and mock tests were incredibly helpful. Now I'm studying at NUST!",
+							rating: 5
+						},
+						{
+							name: "Fatima Zahra",
+							exam: "NAT-IE 2024",
+							score: "Score: 87/100",
+							avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&q=80",
+							review: "I was struggling with quantitative reasoning but the structured practice made everything clear. Got admission in my dream university!",
+							rating: 5
+						},
+						{
+							name: "Hassan Raza",
+							exam: "MDCAT 2024",
+							score: "Score: 188/200",
+							avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80",
+							review: "The biology section was my weakness, but the comprehensive notes and MCQ practice changed everything. Highly recommended!",
+							rating: 5
+						},
+						{
+							name: "Sana Malik",
+							exam: "NUST NET 2024",
+							score: "Merit Position: 125",
+							avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80",
+							review: "The realistic mock tests prepared me mentally for the actual exam. The detailed solutions after each test were super helpful!",
+							rating: 4
+						},
+						{
+							name: "Usman Ahmed",
+							exam: "NAT-IIM 2024",
+							score: "Score: 82/100",
+							avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80",
+							review: "Started preparation just 2 months before the exam. The focused study plans helped me achieve a great score in limited time!",
+							rating: 5
+						}
+					].map((review, index) => (
+						<article
+							key={index}
+							className="bg-white rounded-2xl border border-slate-200 p-6 hover:border-blue-200 hover:shadow-lg transition-all duration-300"
+						>
+							<div className="flex items-center gap-4 mb-4">
+								<img
+									src={review.avatar}
+									alt={review.name}
+									className="w-14 h-14 rounded-full object-cover border-2 border-white shadow-md"
+								/>
+								<div>
+									<h4 className="font-semibold text-slate-900">{review.name}</h4>
+									<p className="text-sm text-blue-600 font-medium">{review.exam}</p>
+									<p className="text-xs text-emerald-600 font-semibold">{review.score}</p>
+								</div>
+							</div>
+							<div className="flex gap-1 mb-3">
+								{[...Array(5)].map((_, i) => (
+									<svg key={i} className={`w-4 h-4 ${i < review.rating ? 'text-amber-400' : 'text-slate-200'}`} fill="currentColor" viewBox="0 0 20 20">
+										<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+									</svg>
+								))}
+							</div>
+							<p className="text-slate-600 text-sm leading-relaxed">"{review.review}"</p>
+						</article>
+					))}
+				</div>
+
+				{/* Overall Stats */}
+				<div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
+					{[
+						{ value: "15,000+", label: "Students Enrolled" },
+						{ value: "92%", label: "Success Rate" },
+						{ value: "4.9/5", label: "Average Rating" },
+						{ value: "500+", label: "Success Stories" }
+					].map((stat, index) => (
+						<div key={index} className="text-center p-6 rounded-2xl bg-gradient-to-br from-slate-50 to-white border border-slate-200 hover:shadow-md transition">
+							<p className="text-3xl font-bold text-blue-600">{stat.value}</p>
+							<p className="text-sm text-slate-500 mt-1">{stat.label}</p>
+						</div>
+					))}
+				</div>
+			</section>
+
 			{/* CTA SECTION */}
 			<section className="mx-auto max-w-7xl px-6 py-16 sm:py-20">
 				<div className="rounded-3xl bg-gradient-to-r from-blue-600 via-indigo-600 to-slate-900 px-10 py-14 text-white shadow-[0_35px_80px_rgba(15,23,42,0.35)]">
@@ -210,7 +315,7 @@ const Home = () => {
 					</div>
 				</div>
 			</section>
-			<Footer/>
+			<Footer />
 		</main>
 	);
 };

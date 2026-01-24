@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 
 const netCards = [
@@ -12,7 +12,7 @@ const netCards = [
 			{ name: "Physics", weight: 30 },
 			{ name: "English", weight: 20 }
 		],
-		image: "https://source.unsplash.com/400x300/?engineering",
+		image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80",
 		accent: "from-blue-500 to-sky-500"
 	},
 	{
@@ -24,7 +24,7 @@ const netCards = [
 			{ name: "Chemistry", weight: 30 },
 			{ name: "English", weight: 20 }
 		],
-		image: "https://source.unsplash.com/400x300/?laboratory",
+		image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=400&q=80",
 		accent: "from-emerald-500 to-teal-500"
 	},
 	{
@@ -35,7 +35,7 @@ const netCards = [
 			{ name: "Quantitative Mathematics", weight: 50 },
 			{ name: "English", weight: 50 }
 		],
-		image: "https://source.unsplash.com/400x300/?business",
+		image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=400&q=80",
 		accent: "from-amber-500 to-orange-500"
 	},
 	{
@@ -47,7 +47,7 @@ const netCards = [
 			{ name: "Mathematics", weight: 30 },
 			{ name: "English", weight: 20 }
 		],
-		image: "https://source.unsplash.com/400x300/?architecture",
+		image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=400&q=80",
 		accent: "from-purple-500 to-indigo-500"
 	},
 	{
@@ -58,7 +58,7 @@ const netCards = [
 			{ name: "Mathematics", weight: 50 },
 			{ name: "English", weight: 50 }
 		],
-		image: "https://source.unsplash.com/400x300/?science",
+		image: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=400&q=80",
 		accent: "from-cyan-500 to-blue-500"
 	}
 ];
@@ -67,9 +67,20 @@ const slugify = (value) => value.toLowerCase().replace(/\s+/g, "-");
 
 const NETPrep = () => {
 	const tracks = useMemo(() => netCards, []);
+	const navigate = useNavigate();
+
+	const handleGetStarted = () => {
+		const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+		if (isLoggedIn) {
+			document.getElementById('categories-section')?.scrollIntoView({ behavior: 'smooth' });
+		} else {
+			navigate('/auth');
+		}
+	};
+
 	return (
 		<>
-			<main onClick={scroll(0,0)} className="min-h-screen bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100 px-4 py-12 sm:px-6 lg:px-10">
+			<main onClick={scroll(0, 0)} className="min-h-screen bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100 px-4 py-12 sm:px-6 lg:px-10">
 				<section className="mx-auto grid max-w-6xl gap-12 rounded-[32px] bg-white/95 p-10 shadow-[0_40px_90px_rgba(15,23,42,0.08)] backdrop-blur-lg lg:grid-cols-[1.1fr_1fr] lg:p-14">
 					<div className="flex flex-col gap-5">
 						<p className="text-sm font-semibold uppercase tracking-[0.32em] text-blue-600">Entry Test Preparation</p>
@@ -80,17 +91,17 @@ const NETPrep = () => {
 							Targeted lesson plans, simulated mocks, and adaptive analytics built to help you succeed in every NET category.
 						</p>
 						<div className="mt-4 flex flex-wrap gap-4">
-							<Link
-								to="/signup"
+							<button
+								onClick={handleGetStarted}
 								className="inline-flex items-center justify-center rounded-full bg-blue-600 px-8 py-3 font-semibold text-white shadow-lg transition hover:-translate-y-1 hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300"
 							>
 								Get Started
-							</Link>
+							</button>
 							<Link
 								to="/net"
 								className="inline-flex items-center justify-center rounded-full border border-slate-300/70 bg-white px-8 py-3 font-semibold text-slate-800 shadow-md transition hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-200"
 							>
-							Explore All Tracks
+								Explore All Tracks
 							</Link>
 						</div>
 					</div>
@@ -105,7 +116,7 @@ const NETPrep = () => {
 					</div>
 				</section>
 
-				<section className="mx-auto mt-6 max-w-6xl sm:mt-8 lg:mt-10">
+				<section id="categories-section" className="mx-auto mt-6 max-w-6xl sm:mt-8 lg:mt-10">
 					<header className="mx-auto max-w-3xl text-center">
 						<p className="text-xs font-semibold uppercase tracking-[0.28em] text-blue-600">Choose Your Stream</p>
 						<h2 className="mt-3 text-3xl font-bold text-slate-900 md:text-4xl">NET Categories</h2>
@@ -146,7 +157,7 @@ const NETPrep = () => {
 										))}
 									</ul>
 									<Link
-										to={`/net?track=${slugify(title)}`}
+										to={`/net/${slugify(title)}`}
 										className="mt-auto inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:scale-105 hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300"
 									>
 										Start Practice
