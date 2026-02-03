@@ -16,7 +16,7 @@ const streamSubjects = {
                 chapters: 18,
                 progress: 35,
                 difficulty: "Hard",
-                weight: "68%"
+                weight: 40
             },
             {
                 id: "chemistry",
@@ -26,7 +26,7 @@ const streamSubjects = {
                 chapters: 16,
                 progress: 40,
                 difficulty: "Hard",
-                weight: "18%"
+                weight: 30
             },
             {
                 id: "physics",
@@ -36,7 +36,7 @@ const streamSubjects = {
                 chapters: 12,
                 progress: 25,
                 difficulty: "Medium",
-                weight: "9%"
+                weight: 20
             },
             {
                 id: "english",
@@ -46,7 +46,7 @@ const streamSubjects = {
                 chapters: 8,
                 progress: 55,
                 difficulty: "Easy",
-                weight: "5%"
+                weight: 10
             }
         ]
     }
@@ -159,6 +159,38 @@ const SubjectSelection = () => {
                                 <option value="progress">Progress</option>
                                 <option value="alphabetical">Alphabetical</option>
                             </select>
+                        </div>
+                    </div>
+
+                    {/* Subject Weightage Section */}
+                    <div className="mb-10 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center">
+                                <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-bold text-slate-900">Subject Weightage in MDCAT</h3>
+                                <p className="text-sm text-slate-500">Focus on subjects with higher weightage for better scores</p>
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                            {streamData.subjects.map((subject) => (
+                                <div key={subject.id} className="relative flex flex-col items-center p-4 rounded-xl bg-gradient-to-br from-emerald-50 to-white border border-emerald-100 hover:border-emerald-200 hover:shadow-md transition-all">
+                                    <div className="relative w-20 h-20 mb-3">
+                                        <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 36 36">
+                                            <circle cx="18" cy="18" r="15.5" fill="none" stroke="#d1fae5" strokeWidth="3" />
+                                            <circle cx="18" cy="18" r="15.5" fill="none" stroke="#10b981" strokeWidth="3" strokeDasharray={`${subject.weight} ${100 - subject.weight}`} strokeLinecap="round" className="transition-all duration-700" />
+                                        </svg>
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                            <span className="text-xl font-bold text-slate-900">{subject.weight}%</span>
+                                        </div>
+                                    </div>
+                                    <span className="text-sm font-semibold text-slate-700 text-center">{subject.name}</span>
+                                    <span className="text-xs text-slate-400 mt-1">{subject.chapters} chapters</span>
+                                </div>
+                            ))}
                         </div>
                     </div>
 

@@ -16,7 +16,7 @@ const streamSubjects = {
                 chapters: 12,
                 progress: 40,
                 difficulty: "Hard",
-                weight: "25%"
+                weight: 20
             },
             {
                 id: "physics",
@@ -26,7 +26,7 @@ const streamSubjects = {
                 chapters: 10,
                 progress: 30,
                 difficulty: "Hard",
-                weight: "25%"
+                weight: 20
             },
             {
                 id: "english",
@@ -36,7 +36,7 @@ const streamSubjects = {
                 chapters: 8,
                 progress: 55,
                 difficulty: "Medium",
-                weight: "20%"
+                weight: 20
             },
             {
                 id: "analytical",
@@ -46,7 +46,7 @@ const streamSubjects = {
                 chapters: 6,
                 progress: 45,
                 difficulty: "Medium",
-                weight: "15%"
+                weight: 20
             },
             {
                 id: "quantitative",
@@ -56,7 +56,7 @@ const streamSubjects = {
                 chapters: 6,
                 progress: 50,
                 difficulty: "Medium",
-                weight: "15%"
+                weight: 20
             }
         ]
     },
@@ -72,7 +72,7 @@ const streamSubjects = {
                 chapters: 14,
                 progress: 35,
                 difficulty: "Hard",
-                weight: "30%"
+                weight: 20
             },
             {
                 id: "chemistry",
@@ -82,7 +82,7 @@ const streamSubjects = {
                 chapters: 12,
                 progress: 40,
                 difficulty: "Hard",
-                weight: "20%"
+                weight: 20
             },
             {
                 id: "english",
@@ -92,7 +92,7 @@ const streamSubjects = {
                 chapters: 8,
                 progress: 60,
                 difficulty: "Medium",
-                weight: "20%"
+                weight: 20
             },
             {
                 id: "analytical",
@@ -102,7 +102,7 @@ const streamSubjects = {
                 chapters: 6,
                 progress: 45,
                 difficulty: "Medium",
-                weight: "15%"
+                weight: 20
             },
             {
                 id: "quantitative",
@@ -112,7 +112,7 @@ const streamSubjects = {
                 chapters: 6,
                 progress: 50,
                 difficulty: "Medium",
-                weight: "15%"
+                weight: 20
             }
         ]
     }
@@ -223,6 +223,37 @@ const SubjectSelection = () => {
                                 <option value="progress">Progress</option>
                                 <option value="alphabetical">Alphabetical</option>
                             </select>
+                        </div>
+                    </div>
+
+                    {/* Subject Weightage Section */}
+                    <div className="mb-10 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-10 h-10 rounded-xl bg-violet-100 flex items-center justify-center">
+                                <svg className="w-5 h-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-bold text-slate-900">Subject Weightage in NAT</h3>
+                                <p className="text-sm text-slate-500">All subjects carry equal weightage in NAT exam</p>
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                            {streamData.subjects.map((subject) => (
+                                <div key={subject.id} className="relative flex flex-col items-center p-4 rounded-xl bg-gradient-to-br from-violet-50 to-white border border-violet-100 hover:border-violet-200 hover:shadow-md transition-all">
+                                    <div className="relative w-16 h-16 mb-3">
+                                        <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
+                                            <circle cx="18" cy="18" r="15.5" fill="none" stroke="#ede9fe" strokeWidth="3" />
+                                            <circle cx="18" cy="18" r="15.5" fill="none" stroke="#8b5cf6" strokeWidth="3" strokeDasharray={`${subject.weight} ${100 - subject.weight}`} strokeLinecap="round" className="transition-all duration-700" />
+                                        </svg>
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                            <span className="text-lg font-bold text-slate-900">{subject.weight}%</span>
+                                        </div>
+                                    </div>
+                                    <span className="text-xs font-semibold text-slate-700 text-center">{subject.name}</span>
+                                </div>
+                            ))}
                         </div>
                     </div>
 

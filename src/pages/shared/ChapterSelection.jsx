@@ -278,7 +278,7 @@ const ChapterSelection = () => {
                                 </div>
 
                                 <div className="bg-blue-50 border border-blue-100 rounded-lg p-4">
-                                    <h4 className="text-sm font-semibold text-blue-900 mb-1">💡 Study Tip</h4>
+                                    <h4 className="text-sm font-semibold text-blue-900 mb-1">Study Tip</h4>
                                     <p className="text-xs text-blue-700">Complete chapters sequentially for best results.</p>
                                 </div>
                             </div>

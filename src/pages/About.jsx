@@ -1,126 +1,182 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// INSTRUCTIONS:
-// 1. Make sure you have Tailwind CSS configured in your project.
-// 2. It's recommended to add the Google Fonts import to your main index.html or global CSS file:
-//    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-// 3. Add these base styles to your global CSS file for the correct look and feel:
-//    body {
-//        font-family: 'Poppins', sans-serif;
-//        background-color: #FDF8F3;
-//    }
-//    h1, h2, h3 {
-//        font-family: 'Cormorant Garamond', serif;
-//        font-weight: 600;
-//    }
-
+gsap.registerPlugin(ScrollTrigger);
 
 const AboutPage = () => {
-    // useEffect hook to run animations after the component mounts
-    useEffect(() => {
-        const setupAnimations = () => {
-            const gsap = window.gsap;
-            if (!gsap) {
-                console.error("GSAP not available.");
-                return;
-            }
-            gsap.registerPlugin(window.ScrollTrigger);
+    const pageRef = useRef(null);
+    const heroRef = useRef(null);
+    const section1Ref = useRef(null);
+    const section2Ref = useRef(null);
 
-            // Select all elements with the 'gsap-reveal' class and animate them
-            gsap.utils.toArray('.gsap-reveal').forEach((elem) => {
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+
+        const ctx = gsap.context(() => {
+            // Hero animation
+            gsap.fromTo(
+                heroRef.current,
+                { opacity: 0, y: 30 },
+                { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }
+            );
+
+            // Section 1 - Image slides in from left, text from right
+            const section1Items = section1Ref.current?.querySelectorAll('.gsap-item');
+            if (section1Items) {
                 gsap.fromTo(
-                    elem,
-                    { opacity: 0, y: 50 }, // Starting state: invisible and slightly down
+                    section1Items[0], // Image
+                    { opacity: 0, x: -60 },
                     {
                         opacity: 1,
-                        y: 0, // Ending state: fully visible and at original position
-                        duration: 1,
+                        x: 0,
+                        duration: 0.8,
                         ease: 'power3.out',
                         scrollTrigger: {
-                            trigger: elem,
-                            start: 'top 85%', // Start the animation when the top of the element is 85% from the top of the viewport
-                            end: 'bottom 20%',
-                            toggleActions: 'play none none none', // Play the animation once when it enters the viewport
-                        },
+                            trigger: section1Ref.current,
+                            start: 'top 80%',
+                            toggleActions: 'play none none none'
+                        }
                     }
                 );
-            });
-        };
-        
-        const gsapCoreURL = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js';
-        const scrollTriggerURL = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js';
-
-        let script1, script2;
-
-        if (window.gsap) {
-            setupAnimations();
-        } else {
-            script1 = document.createElement('script');
-            script1.src = gsapCoreURL;
-            script1.onload = () => {
-                script2 = document.createElement('script');
-                script2.src = scrollTriggerURL;
-                script2.onload = setupAnimations;
-                document.head.appendChild(script2);
-            };
-            document.head.appendChild(script1);
-        }
-        
-        // Cleanup function to remove scripts when component unmounts
-        return () => {
-            if (script1 && script1.parentNode) {
-                script1.parentNode.removeChild(script1);
+                gsap.fromTo(
+                    section1Items[1], // Text
+                    { opacity: 0, x: 60 },
+                    {
+                        opacity: 1,
+                        x: 0,
+                        duration: 0.8,
+                        delay: 0.2,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: section1Ref.current,
+                            start: 'top 80%',
+                            toggleActions: 'play none none none'
+                        }
+                    }
+                );
             }
-            if (script2 && script2.parentNode) {
-                script2.parentNode.removeChild(script2);
-            }
-        };
 
-    }, []); // The empty dependency array ensures this effect runs only once
+            // Section 2 - Reversed direction
+            const section2Items = section2Ref.current?.querySelectorAll('.gsap-item');
+            if (section2Items) {
+                gsap.fromTo(
+                    section2Items[0], // Text (appears first on mobile)
+                    { opacity: 0, x: -60 },
+                    {
+                        opacity: 1,
+                        x: 0,
+                        duration: 0.8,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: section2Ref.current,
+                            start: 'top 80%',
+                            toggleActions: 'play none none none'
+                        }
+                    }
+                );
+                gsap.fromTo(
+                    section2Items[1], // Image
+                    { opacity: 0, x: 60 },
+                    {
+                        opacity: 1,
+                        x: 0,
+                        duration: 0.8,
+                        delay: 0.2,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: section2Ref.current,
+                            start: 'top 80%',
+                            toggleActions: 'play none none none'
+                        }
+                    }
+                );
+            }
+        }, pageRef);
+
+        return () => ctx.revert();
+    }, []);
 
     return (
-        <div className="text-gray-800">
-            <main className="pt-16 md:pt-24">
-                <div className="container mx-auto px-6">
+        <div ref={pageRef} className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50 text-gray-800">
+            <main className="pt-12 pb-16 md:pt-20 md:pb-24">
+                <div className="container mx-auto px-6 max-w-6xl">
+
+                    {/* Hero Header */}
+                    <div ref={heroRef} className="text-center mb-16">
+                        <span className="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full uppercase tracking-wider mb-4">
+                            About Us
+                        </span>
+                        <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+                            Empowering Your Success
+                        </h1>
+                        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                            We're dedicated to helping students achieve their dreams through quality education and innovative learning tools.
+                        </p>
+                    </div>
+
                     {/* Section 1: Our Mission */}
-                    <section className="grid md:grid-cols-2 gap-16 items-center my-12 md:my-20">
-                        <div className="gsap-reveal">
-                            <img 
-                                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto.format&fit=crop" 
-                                alt="A group of students studying collaboratively for their exams" 
-                                className="w-full h-auto object-cover rounded-lg shadow-xl"
+                    <section ref={section1Ref} className="grid md:grid-cols-2 gap-12 items-center mb-20">
+                        <div className="gsap-item">
+                            <img
+                                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto.format&fit=crop"
+                                alt="Students studying collaboratively"
+                                className="w-full h-72 md:h-80 object-cover rounded-2xl shadow-lg"
                             />
                         </div>
-                        <div className="gsap-reveal">
-                            <h1 className="text-6xl md:text-7xl mb-6">Our Mission</h1>
-                            <p className="text-lg text-gray-600 leading-relaxed font-light">
-                                We understand the challenges and anxieties that come with preparing for crucial entry tests like the <strong className="font-medium">NET, NAT, and MDCAT</strong>. Our mission is to empower every student with the knowledge, skills, and confidence they need to ace these exams and secure admission into their dream universities. We believe that with the right guidance, every student can achieve their academic goals.
+                        <div className="gsap-item">
+                            <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 mb-2 block">Our Mission</span>
+                            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Preparing You for Success</h2>
+                            <p className="text-slate-600 leading-relaxed mb-4">
+                                We understand the challenges that come with preparing for crucial entry tests like the <strong className="font-medium text-slate-800">NET, NAT, and MDCAT</strong>. Our mission is to empower every student with the knowledge, skills, and confidence they need to ace these exams.
+                            </p>
+                            <p className="text-slate-600 leading-relaxed">
+                                We believe that with the right guidance, every student can achieve their academic goals and secure admission into their dream universities.
                             </p>
                         </div>
                     </section>
 
                     {/* Section 2: Our Approach */}
-                    <section className="grid md:grid-cols-2 gap-16 items-center my-12 md:my-20">
-                        <div className="gsap-reveal md:order-2">
-                            <img 
-                                src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto.format&fit=crop" 
-                                alt="An instructor mentoring a student" 
-                                className="w-full h-auto object-cover rounded-lg shadow-xl"
+                    <section ref={section2Ref} className="grid md:grid-cols-2 gap-12 items-center mb-16">
+                        <div className="gsap-item md:order-2">
+                            <img
+                                src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto.format&fit=crop"
+                                alt="Instructor mentoring a student"
+                                className="w-full h-72 md:h-80 object-cover rounded-2xl shadow-lg"
                             />
                         </div>
-                        <div className="gsap-reveal md:order-1">
-                            <h2 className="text-5xl md:text-6xl mb-6">Our Approach to Excellence</h2>
-                            <p className="text-lg text-gray-600 leading-relaxed font-light">
-                                Our preparation material is meticulously designed by subject matter experts and experienced educators. We provide comprehensive notes, extensive question banks, realistic mock exams, and in-depth video lectures that cover every aspect of the syllabus. We focus on building concepts from the ground up, ensuring you're not just memorizing, but truly understanding the material for tests like etc, etc.
+                        <div className="gsap-item md:order-1">
+                            <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 mb-2 block">Our Approach</span>
+                            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Excellence in Education</h2>
+                            <p className="text-slate-600 leading-relaxed mb-4">
+                                Our preparation material is meticulously designed by subject matter experts and experienced educators. We provide comprehensive notes, extensive question banks, and realistic mock exams.
+                            </p>
+                            <p className="text-slate-600 leading-relaxed">
+                                We focus on building concepts from the ground up, ensuring you're not just memorizing, but truly understanding the material for lasting success.
                             </p>
                         </div>
                     </section>
+
+                    {/* Stats Section */}
+                    <section className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+                        {[
+                            { value: '15K+', label: 'Active Students' },
+                            { value: '92%', label: 'Success Rate' },
+                            { value: '50+', label: 'Expert Teachers' },
+                            { value: '4.9', label: 'User Rating' }
+                        ].map((stat, index) => (
+                            <div key={index} className="bg-white rounded-xl p-6 text-center border border-slate-200 shadow-sm hover:shadow-md transition">
+                                <p className="text-3xl font-bold text-blue-600">{stat.value}</p>
+                                <p className="text-sm text-slate-500 mt-1">{stat.label}</p>
+                            </div>
+                        ))}
+                    </section>
                 </div>
             </main>
-            
-            <footer className="bg-[#ECE5DD] mt-20">
-                <div className="container mx-auto px-6 py-12 text-center text-gray-600">
-                    <p>&copy; 2024 PrepSuccess. All Rights Reserved. Your Future Starts Here.</p>
+
+            <footer className="bg-slate-100 border-t border-slate-200">
+                <div className="container mx-auto px-6 py-8 text-center text-slate-600">
+                    <p className="text-sm">© 2024 PrepSuccess. All Rights Reserved. Your Future Starts Here.</p>
                 </div>
             </footer>
         </div>

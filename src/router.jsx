@@ -40,10 +40,13 @@ import NATSubjectSelection from "./pages/nat/SubjectSelection";
 // Shared Pages (for MDCAT and NAT)
 import { ChapterSelection as SharedChapterSelection, TopicsPage as SharedTopicsPage } from "./pages/shared";
 
+import ScrollToTop from "./components/ScrollToTop";
+
 // --- Root layout: Navbar always visible ---
 function RootLayout() {
 	return (
 		<>
+			<ScrollToTop />
 			<Navbar />
 			<Outlet />
 		</>

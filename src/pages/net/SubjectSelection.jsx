@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import Footer from "../../components/Footer";
 
-// Subject data for each NET stream with proper images
+// Subject data for each NET stream with proper images and weightage
 const streamSubjects = {
     "net-engineering": {
         name: "NET-Engineering",
@@ -15,7 +15,9 @@ const streamSubjects = {
                 description: "Master algebra, calculus, trigonometry, and geometry",
                 chapters: 15,
                 progress: 45,
-                difficulty: "Hard"
+                difficulty: "Hard",
+                weight: 50,
+                color: "blue"
             },
             {
                 id: "physics",
@@ -24,7 +26,9 @@ const streamSubjects = {
                 description: "Learn mechanics, waves, thermodynamics, and modern physics",
                 chapters: 12,
                 progress: 30,
-                difficulty: "Hard"
+                difficulty: "Hard",
+                weight: 30,
+                color: "indigo"
             },
             {
                 id: "english",
@@ -33,7 +37,9 @@ const streamSubjects = {
                 description: "Improve vocabulary, grammar, and comprehension skills",
                 chapters: 8,
                 progress: 60,
-                difficulty: "Medium"
+                difficulty: "Medium",
+                weight: 20,
+                color: "sky"
             }
         ]
     },
@@ -48,7 +54,9 @@ const streamSubjects = {
                 description: "Study cell biology, genetics, physiology, and ecology",
                 chapters: 18,
                 progress: 25,
-                difficulty: "Hard"
+                difficulty: "Hard",
+                weight: 50,
+                color: "emerald"
             },
             {
                 id: "chemistry",
@@ -57,7 +65,9 @@ const streamSubjects = {
                 description: "Learn organic, inorganic, and physical chemistry",
                 chapters: 14,
                 progress: 40,
-                difficulty: "Hard"
+                difficulty: "Hard",
+                weight: 30,
+                color: "purple"
             },
             {
                 id: "english",
@@ -66,7 +76,9 @@ const streamSubjects = {
                 description: "Improve vocabulary, grammar, and comprehension skills",
                 chapters: 8,
                 progress: 55,
-                difficulty: "Medium"
+                difficulty: "Medium",
+                weight: 20,
+                color: "sky"
             }
         ]
     },
@@ -81,7 +93,9 @@ const streamSubjects = {
                 description: "Master business math, statistics, and quantitative reasoning",
                 chapters: 10,
                 progress: 35,
-                difficulty: "Medium"
+                difficulty: "Medium",
+                weight: 50,
+                color: "amber"
             },
             {
                 id: "english",
@@ -90,7 +104,9 @@ const streamSubjects = {
                 description: "Improve vocabulary, grammar, and comprehension skills",
                 chapters: 8,
                 progress: 50,
-                difficulty: "Medium"
+                difficulty: "Medium",
+                weight: 50,
+                color: "sky"
             }
         ]
     },
@@ -105,7 +121,9 @@ const streamSubjects = {
                 description: "Develop spatial reasoning and design thinking skills",
                 chapters: 8,
                 progress: 20,
-                difficulty: "Medium"
+                difficulty: "Medium",
+                weight: 50,
+                color: "pink"
             },
             {
                 id: "mathematics",
@@ -114,7 +132,9 @@ const streamSubjects = {
                 description: "Master geometry, mensuration, and mathematical reasoning",
                 chapters: 12,
                 progress: 40,
-                difficulty: "Hard"
+                difficulty: "Hard",
+                weight: 30,
+                color: "blue"
             },
             {
                 id: "english",
@@ -123,7 +143,9 @@ const streamSubjects = {
                 description: "Improve vocabulary, grammar, and comprehension skills",
                 chapters: 8,
                 progress: 45,
-                difficulty: "Medium"
+                difficulty: "Medium",
+                weight: 20,
+                color: "sky"
             }
         ]
     },
@@ -138,7 +160,9 @@ const streamSubjects = {
                 description: "Advanced mathematics including calculus and algebra",
                 chapters: 15,
                 progress: 30,
-                difficulty: "Hard"
+                difficulty: "Hard",
+                weight: 50,
+                color: "blue"
             },
             {
                 id: "english",
@@ -147,7 +171,9 @@ const streamSubjects = {
                 description: "Improve vocabulary, grammar, and comprehension skills",
                 chapters: 8,
                 progress: 65,
-                difficulty: "Medium"
+                difficulty: "Medium",
+                weight: 50,
+                color: "sky"
             }
         ]
     }
@@ -273,6 +299,52 @@ const SubjectSelection = () => {
                                 <option value="progress">Progress</option>
                                 <option value="alphabetical">Alphabetical</option>
                             </select>
+                        </div>
+                    </div>
+
+                    {/* Subject Weightage Section */}
+                    <div className="mb-10 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
+                                <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-bold text-slate-900">Subject Weightage in Exam</h3>
+                                <p className="text-sm text-slate-500">Focus on subjects with higher weightage for better scores</p>
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                            {streamData.subjects.map((subject) => (
+                                <div key={subject.id} className="relative flex flex-col items-center p-4 rounded-xl bg-gradient-to-br from-slate-50 to-white border border-slate-100 hover:border-blue-200 hover:shadow-md transition-all">
+                                    {/* Circular Progress */}
+                                    <div className="relative w-20 h-20 mb-3">
+                                        <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 36 36">
+                                            <circle cx="18" cy="18" r="15.5" fill="none" stroke="#e2e8f0" strokeWidth="3" />
+                                            <circle
+                                                cx="18" cy="18" r="15.5" fill="none"
+                                                stroke="url(#gradient)"
+                                                strokeWidth="3"
+                                                strokeDasharray={`${subject.weight} ${100 - subject.weight}`}
+                                                strokeLinecap="round"
+                                                className="transition-all duration-700"
+                                            />
+                                            <defs>
+                                                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                    <stop offset="0%" stopColor="#3b82f6" />
+                                                    <stop offset="100%" stopColor="#6366f1" />
+                                                </linearGradient>
+                                            </defs>
+                                        </svg>
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                            <span className="text-xl font-bold text-slate-900">{subject.weight}%</span>
+                                        </div>
+                                    </div>
+                                    <span className="text-sm font-semibold text-slate-700 text-center">{subject.name}</span>
+                                    <span className="text-xs text-slate-400 mt-1">{subject.chapters} chapters</span>
+                                </div>
+                            ))}
                         </div>
                     </div>
 

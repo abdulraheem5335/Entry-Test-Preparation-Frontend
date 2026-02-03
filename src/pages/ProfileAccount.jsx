@@ -85,10 +85,10 @@ const ProfileAccount = () => {
                         <p className="text-blue-100">{formData.email}</p>
                         <div className="flex flex-wrap justify-center sm:justify-start gap-2 mt-2">
                             <span className="px-3 py-1 bg-white/20 rounded-full text-xs font-medium">
-                                🎯 {formData.targetExam}
+                                Target: {formData.targetExam}
                             </span>
                             <span className="px-3 py-1 bg-white/20 rounded-full text-xs font-medium">
-                                📍 {formData.city}
+                                City: {formData.city}
                             </span>
                         </div>
                     </div>
@@ -106,8 +106,8 @@ const ProfileAccount = () => {
                         key={tab.id}
                         onClick={() => setActiveTab(tab.id)}
                         className={`px-4 py-2 rounded-lg font-medium whitespace-nowrap transition ${activeTab === tab.id
-                                ? 'bg-blue-600 text-white'
-                                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                             }`}
                     >
                         {tab.label}
@@ -127,8 +127,8 @@ const ProfileAccount = () => {
                                 onChange={e => setFormData({ ...formData, firstName: e.target.value })}
                                 disabled={!isEditing}
                                 className={`w-full px-4 py-2.5 rounded-lg border transition ${isEditing
-                                        ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-                                        : 'border-transparent bg-slate-50 text-slate-700'
+                                    ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                                    : 'border-transparent bg-slate-50 text-slate-700'
                                     }`}
                             />
                         </div>
@@ -140,8 +140,8 @@ const ProfileAccount = () => {
                                 onChange={e => setFormData({ ...formData, lastName: e.target.value })}
                                 disabled={!isEditing}
                                 className={`w-full px-4 py-2.5 rounded-lg border transition ${isEditing
-                                        ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-                                        : 'border-transparent bg-slate-50 text-slate-700'
+                                    ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                                    : 'border-transparent bg-slate-50 text-slate-700'
                                     }`}
                             />
                         </div>
@@ -153,8 +153,8 @@ const ProfileAccount = () => {
                                 onChange={e => setFormData({ ...formData, email: e.target.value })}
                                 disabled={!isEditing}
                                 className={`w-full px-4 py-2.5 rounded-lg border transition ${isEditing
-                                        ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-                                        : 'border-transparent bg-slate-50 text-slate-700'
+                                    ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                                    : 'border-transparent bg-slate-50 text-slate-700'
                                     }`}
                             />
                         </div>
@@ -166,8 +166,8 @@ const ProfileAccount = () => {
                                 onChange={e => setFormData({ ...formData, phone: e.target.value })}
                                 disabled={!isEditing}
                                 className={`w-full px-4 py-2.5 rounded-lg border transition ${isEditing
-                                        ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-                                        : 'border-transparent bg-slate-50 text-slate-700'
+                                    ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                                    : 'border-transparent bg-slate-50 text-slate-700'
                                     }`}
                             />
                         </div>
@@ -179,8 +179,8 @@ const ProfileAccount = () => {
                                 onChange={e => setFormData({ ...formData, city: e.target.value })}
                                 disabled={!isEditing}
                                 className={`w-full px-4 py-2.5 rounded-lg border transition ${isEditing
-                                        ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-                                        : 'border-transparent bg-slate-50 text-slate-700'
+                                    ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                                    : 'border-transparent bg-slate-50 text-slate-700'
                                     }`}
                             />
                         </div>
@@ -191,8 +191,8 @@ const ProfileAccount = () => {
                                 onChange={e => setFormData({ ...formData, targetExam: e.target.value })}
                                 disabled={!isEditing}
                                 className={`w-full px-4 py-2.5 rounded-lg border transition ${isEditing
-                                        ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white'
-                                        : 'border-transparent bg-slate-50 text-slate-700'
+                                    ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white'
+                                    : 'border-transparent bg-slate-50 text-slate-700'
                                     }`}
                             >
                                 <option>MDCAT 2025</option>
@@ -209,8 +209,8 @@ const ProfileAccount = () => {
                                 disabled={!isEditing}
                                 rows={3}
                                 className={`w-full px-4 py-2.5 rounded-lg border resize-none transition ${isEditing
-                                        ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-                                        : 'border-transparent bg-slate-50 text-slate-700'
+                                    ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                                    : 'border-transparent bg-slate-50 text-slate-700'
                                     }`}
                             />
                         </div>
@@ -246,8 +246,8 @@ const ProfileAccount = () => {
                                 onChange={e => setFormData({ ...formData, institution: e.target.value })}
                                 disabled={!isEditing}
                                 className={`w-full px-4 py-2.5 rounded-lg border transition ${isEditing
-                                        ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-                                        : 'border-transparent bg-slate-50 text-slate-700'
+                                    ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                                    : 'border-transparent bg-slate-50 text-slate-700'
                                     }`}
                             />
                         </div>
@@ -258,8 +258,8 @@ const ProfileAccount = () => {
                                 onChange={e => setFormData({ ...formData, educationLevel: e.target.value })}
                                 disabled={!isEditing}
                                 className={`w-full px-4 py-2.5 rounded-lg border transition ${isEditing
-                                        ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white'
-                                        : 'border-transparent bg-slate-50 text-slate-700'
+                                    ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white'
+                                    : 'border-transparent bg-slate-50 text-slate-700'
                                     }`}
                             >
                                 <option>FSc Pre-Medical</option>
@@ -276,8 +276,8 @@ const ProfileAccount = () => {
                                 onChange={e => setFormData({ ...formData, board: e.target.value })}
                                 disabled={!isEditing}
                                 className={`w-full px-4 py-2.5 rounded-lg border transition ${isEditing
-                                        ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white'
-                                        : 'border-transparent bg-slate-50 text-slate-700'
+                                    ? 'border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white'
+                                    : 'border-transparent bg-slate-50 text-slate-700'
                                     }`}
                             >
                                 <option>BISE Lahore</option>

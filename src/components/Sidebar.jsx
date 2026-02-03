@@ -89,8 +89,8 @@ export default function ProfileSidebar() {
     const isActive = (path) => location.pathname === path || location.pathname.startsWith(path + '/');
 
     const linkClasses = (path) => `flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 ${isActive(path)
-            ? 'bg-blue-50 text-blue-700 font-medium'
-            : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+        ? 'bg-blue-50 text-blue-700 font-medium'
+        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
         }`;
 
     return (
@@ -191,7 +191,7 @@ export default function ProfileSidebar() {
                     <div className="px-2">
                         <Link
                             to="/profile/premium"
-                            className="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 text-white hover:from-amber-500 hover:to-orange-600 transition-all shadow-lg shadow-orange-200"
+                            className="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition-all shadow-sm hover:shadow-md"
                         >
                             <CrownIcon className="w-5 h-5" />
                             <div>
